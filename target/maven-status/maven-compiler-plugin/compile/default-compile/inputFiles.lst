@@ -1,0 +1,13 @@
+G:\workspace\hgs\messageTransponder\src\main\java\com\message\transponder\controller\RoketMQTest.java
+G:\workspace\hgs\messageTransponder\src\main\java\com\message\transponder\utils\RabbitMqUtil.java
+G:\workspace\hgs\messageTransponder\src\main\java\com\message\transponder\config\RocketConsumerConfig.java
+G:\workspace\hgs\messageTransponder\src\main\java\com\message\transponder\config\RabbitProducerConfig.java
+G:\workspace\hgs\messageTransponder\src\main\java\com\message\transponder\config\RocketProducerConfig.java
+G:\workspace\hgs\messageTransponder\src\main\java\com\message\transponder\MessageTransponderApplication.java
+G:\workspace\hgs\messageTransponder\src\main\java\com\message\transponder\config\RabbitConsumerConfig.java
+G:\workspace\hgs\messageTransponder\src\main\java\com\message\transponder\controller\RabbitMQTest.java
+G:\workspace\hgs\messageTransponder\src\main\java\com\message\transponder\utils\RocketMqUtil.java
+G:\workspace\hgs\messageTransponder\src\main\java\com\message\transponder\listener\RabbitConsumeMsgListenerProcessor.java
+G:\workspace\hgs\messageTransponder\src\main\java\com\message\transponder\listener\RocketConsumeMsgListenerProcessor.java
+G:\workspace\hgs\messageTransponder\src\main\java\com\message\transponder\config\RabbitConfig.java
+G:\workspace\hgs\messageTransponder\src\main\java\com\message\transponder\model\RabbitDataModel.java

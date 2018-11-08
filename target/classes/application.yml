@@ -1,0 +1,54 @@
+#\u5BF9\u4E8ErabbitMQ\u7684\u652F\u6301
+server:
+  port: 8081
+spring:
+  rabbitmq:
+    host: 10.201.5.165
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+consumer: 
+#topic:my-mq-EXCHANGE_TOPIC:my-mq-EXCHANGE_TOPIC:my-mq-EXCHANGE_TOPIC 对应 topic:exchange:routingKey 逗号分隔 这主要配置监听rabbitMQ 该消费者订阅的主题和routingKey("*"号表示订阅该主题下所有的routingKey)
+  rabbitProperties: topic:my-mq-EXCHANGE_TOPIC:my-mq-EXCHANGE_TOPIC:my-mq-EXCHANGE_TOPIC
+  
+   
+###producer
+#该应用是否启用生产者
+rocketmq: 
+  producer: 
+    isOnOff: on
+#发送同一类消息的设置为同一个group，保证唯一,默认不需要设置，rocketmq会使用ip@pid(pid代表jvm名字)作为唯一标示
+    groupName: transponderProducer
+#mq的nameserver地址
+    namesrvAddr: 127.0.0.1:9876
+#消息最大长度 默认1024*4(4M)
+    maxMessageSize: 4096
+#发送消息超时时间,默认3000
+    sendMsgTimeout: 3000
+#发送消息失败重试次数，默认2
+    retryTimesWhenSendFailed: 2
+###consumer
+##该应用是否启用消费者 
+  consumer: 
+    isOnOff: on
+    groupName: transponderConsumer
+#mq的nameserver地址
+    namesrvAddr: 127.0.0.1:9876
+#该消费者订阅的主题和tags("*"号表示订阅该主题下所有的tags),格式：topic:tag,topic2:*
+#myTopic:tag 对应 topic:tag tag 最好是单一的 不要搞成匹配多个 像是这样:tag1||tag2||tag3 压根没考虑 也不需要如此繁琐  这行配置主要是监听RocketMQ的消息
+    topics: DemoTopic:*,myTopic:tag
+    consumeThreadMin: 20
+    consumeThreadMax: 64
+#设置一次消费消息的条数，默认为1条 必须是一条 不能更改
+    consumeMessageBatchMaxSize: 1
+    
+#
+#讲一下两个mq之间的转换关系  两个mq之间的消息打通只允许订阅模式
+#RabbitMQ 的交换机 = RocketMQ 主题
+#RabbitMQ 的路由键 = RocketMQ 标签
+#注意业务上需要自己保证幂等性(消息去重) :因为rocket本身也不具有去重功能
+#不支持rocket的有序消息，无法保证有序，因为rabbit没这个功能
+#获取数据如何序列化 需要两端口头商议 
+#
+#
